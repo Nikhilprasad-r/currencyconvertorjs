@@ -1,12 +1,13 @@
 const BASE_URL =
   "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies";
-
+//selecting required HTML items
 const dropdowns = document.querySelectorAll(".dropdown select");
 const btn = document.querySelector("form button");
 const fromCurr = document.querySelector(".from select");
 const toCurr = document.querySelector(".to select");
 const msg = document.querySelector(".msg");
 
+//Creating dropdown list for all country codes
 for (let select of dropdowns) {
   for (currCode in countryList) {
     let newOption = document.createElement("option");
@@ -24,7 +25,7 @@ for (let select of dropdowns) {
     updateFlag(evt.target);
   });
 }
-
+//Getting currency value from API
 const updateExchangeRate = async () => {
   let amount = document.querySelector(".amount input");
   let amtVal = amount.value;
@@ -40,7 +41,7 @@ const updateExchangeRate = async () => {
   let finalAmount = amtVal * rate;
   msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
 };
-
+//Updating flag according to country code
 const updateFlag = (element) => {
   let currCode = element.value;
   let countryCode = countryList[currCode];
